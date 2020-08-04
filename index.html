@@ -51,7 +51,7 @@ $(function(){
     var dt = new Date();
 
     var src = "https://s3.vill-yamagata-kiyomizu.net/live.jpg";
-    src += "&dummy=";
+    src += "?dummy=";
     src += dt.getTime().toString(10);
 
     $("#live-img").attr("src", src);
