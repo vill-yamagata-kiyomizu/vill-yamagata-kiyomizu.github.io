@@ -49,8 +49,8 @@
 $(function(){
   function liveimg (){
     var dt = new Date();
-    var src = "https://live.vill-yamagata-kiyomizu.net/";
-    src += "axis-cgi/jpg/image.cgi?resolution=704x480";
+
+    var src = "https://s3.vill-yamagata-kiyomizu.net/live.jpg";
     src += "&dummy=";
     src += dt.getTime().toString(10);
 
