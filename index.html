@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-<link rel="icon" type="image/x-icon" href="../favicon.png">
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
@@ -14,6 +14,9 @@
 
 <link rel="stylesheet" media="all" href="./public.css" />
 <link rel="stylesheet" media="all" href="./style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body class="body--docs" id="page_top">
@@ -21,13 +24,13 @@
   <div class="bg-detail">
     <div class="crumbs">
     <div class="crumb" itemscope itemtype="http://schema.org/BreadcrumbList">
-      <span class="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name"><a itemprop="item" href="https://www.vill.yamagata.nagano.jp/">ホーム</a></span><meta itemprop="position" content="1"><span class="separator">&rsaquo;</span><span class="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name">ライブカメラ</span><meta itemprop="position" content="4"></span>
+      <span class="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name"><a itemprop="item" href="https://www.vill.yamagata.nagano.jp/">ホーム</a></span><meta itemprop="position" content="1"><span class="separator">&rsaquo;</span><span class="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name"><i class="fas fa-video"></i> ライブカメラ</span><meta itemprop="position" content="4"></span>
     </div>
   </div>
 
   <div class="content-box">
     <div id="main" class="article">
-      <h1>信州山形村ライブカメラ</h1>
+      <h1 style="padding-left:0"><i class="fas fa-video"></i> 信州山形村ライブカメラ</h1>
       <article class="body">
         <div>
         清水高原から四季折々の山形村を含む松本平の眺望<br>
@@ -35,49 +38,34 @@
         </div>
 
         <p>
+          <figure>
+          <img src="" id="live-img" height="480" width="704" alt="信州山形村ライブカメラ">
+          <figurecaption>
+            <div id="live-dt"></div>
+          </figurecaption>
+          </figure>
+
 <script>
-var BaseURL = "https://live.vill-yamagata-kiyomizu.net/";
+$(function(){
+  function liveimg (){
+    var dt = new Date();
+    var src = "https://live.vill-yamagata-kiyomizu.net/";
+    src += "axis-cgi/jpg/image.cgi?resolution=704x480";
+    src += "&dummy=";
+    src += dt.getTime().toString(10);
 
-// AXIS 241S(A)/241Q(A)/240Q/243SAを使用する場合は、次の2行を変更する必要があります。
+    $("#live-img").attr("src", src);
+    $("#live-dt").html('<i class="far fa-clock"></i> ' + dt);
+  }
 
-var Camera = ""; // AXIS 241S(A)/241Q(A)/240Q/243SAを使用する場合は、"//"を挿入して、この行をコメントアウトします。
-// var Camera = "n"; // nをAXIS 241S(A)/241Q(A)/240Q/243SAで使用されるビデオソースに変更して、"//"を削除します。
+  liveimg();
+  setInterval(function(){
+    liveimg();
+  },30000);
+});
 
-// 使用されるカメラに移動し、使用するImageResolutionの前の"//"を削除します。
-// 一度に有効にできるのは1つだけです。
-
-// 使用可能なその他の解像度のリストは、製品の設定に記載されています。
-
-// AXIS 206/207/210/210A/211/211A/212 PTZ/216FD/221/225FD
-// var ImageResolution = "320x240";var DisplayWidth = "320";var DisplayHeight = "240";
-// var ImageResolution = "640x480";var DisplayWidth = "640";var DisplayHeight = "480";
-
-// AXIS 213 PTZ/214 PTZ/231D(+)/232D(+)/240Q/241S(A)/241Q(A)/243SA PAL
-// var ImageResolution = "352x288";var DisplayWidth = "352";var DisplayHeight = "288";
-// var ImageResolution = "704x576";var DisplayWidth = "704";var DisplayHeight = "576";
-
-// AXIS 213 PTZ/214 PTZ/231D(+)/232D(+)/240Q/241S(A)/241Q(A)/243SA NTSC
-// var ImageResolution = "352x240";var DisplayWidth = "352";var DisplayHeight = "240";
-var ImageResolution = "704x480";var DisplayWidth = "704";var DisplayHeight = "480";
-
-// ここより下は変更不要です。
-var File = "axis-cgi/jpg/image.cgi?resolution=" + ImageResolution;
-if (Camera != "") {File += "&camera=" + Camera;}
-theDate = new Date();
-var output = "<img src=\"";
-output += BaseURL;
-output += File;
-output += "&dummy=";
-output += theDate.getTime().toString(10);
-// 上記のダミーのCGIパラメーターによって、ブラウザーの画像キャッシュを迂回します。
-output += "\" height=\"";
-output += DisplayHeight;
-output += "\" width=\"";
-output += DisplayWidth;
-output += "\" alt=\"信州山形村ライブカメラ\">";
-document.write(output);
 </script>
-
+        <br>
         一日に数回巡回撮影を行なうためカメラが動きます
         </p>
 
