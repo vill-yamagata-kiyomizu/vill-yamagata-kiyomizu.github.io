@@ -29,8 +29,8 @@
   </div>
 
   <div class="content-box">
-    <div id="main" class="article">
-      <h1 style="padding-left:0"><i class="fas fa-video"></i> 信州山形村ライブカメラ</h1>
+    <div id="main" class="article" style="padding: 30px">
+      <h1><i class="fas fa-video"></i> 信州山形村ライブカメラ</h1>
       <article class="body">
         <div>
         清水高原から四季折々の山形村を含む松本平の眺望<br>
@@ -41,7 +41,7 @@
           <figure>
           <img src="" id="live-img" width="100%" alt="信州山形村ライブカメラ">
           <figurecaption>
-            <div id="live-dt"></div>
+            <div id="live-dt" style="font-size: 10pt"></div>
           </figurecaption>
           </figure>
 
@@ -55,13 +55,13 @@ $(function(){
     src += dt.getTime().toString(10);
 
     $("#live-img").attr("src", src);
-    $("#live-dt").html('<i class="far fa-clock"></i> ' + dt);
+    $("#live-dt").html('<i class="far fa-clock"></i> ' + dt.toLocaleString());
   }
 
   liveimg();
   setInterval(function(){
     liveimg();
-  },30000);
+  },60000);
 });
 
 </script>
@@ -86,7 +86,8 @@ $(function(){
         〒390-1392<br>
         長野県東筑摩郡山形村2030-1<br>
         山形村役場　企画振興課<br>
-        電話：0263-98-3111　FAX：0263-98-3078<br>
+        電話：0263-98-3111<br>
+        FAX：0263-98-3078<br>
         </div>
       </article>
     </div>
